@@ -26,13 +26,13 @@ const uploadFilesToCloudinary = async (files) => {
   return await Promise.all(uploadPromises);
 };
 
-// getProducts
 const getProducts = async (req, res) => {
   try {
     const products = await Product.find({}).sort({ createdAt: -1, _id: -1 });
     res.json(products);
   } catch (error) {
-    res.status(500).json({ message: 'server error' });
+    console.error("Error in getProducts:", error);
+    res.status(500).json({ message: error.message || 'server error' });
   }
 };
 

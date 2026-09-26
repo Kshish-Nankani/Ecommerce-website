@@ -5,31 +5,22 @@ const connectDb = require("./config/db");
 
 dotenv.config();
 
-// Connect to MongoDB
-connectDb();
-
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:3000",
-  "http://127.0.0.1:3000",
-  process.env.FRONTEND_URL,
-].filter(Boolean);
+// Ensure DB connection for every serverless function request
+app.use(async (req, res, next) => {
+  try {
+    await connectDb();
+  } catch (err) {
+    console.error("DB connection error:", err);
+  }
+  next();
+});
 
+// Configure permissive CORS for Vercel production deployment
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (
-        !origin ||
-        allowedOrigins.includes(origin) ||
-        origin.endsWith(".vercel.app") ||
-        process.env.NODE_ENV !== "production"
-      ) {
-        callback(null, true);
-      } else {
-        callback(null, true);
-      }
-    },
+    origin: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })

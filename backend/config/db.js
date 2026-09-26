@@ -5,12 +5,15 @@ const connectDb = async () => {
   if (mongoose.connection.readyState >= 1) {
     return;
   }
-  if (!process.env.MONGO_URI) {
+  const mongoUri = process.env.MONGO_URI;
+  if (!mongoUri) {
     console.warn("MONGO_URI environment variable is missing.");
     return;
   }
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(mongoUri, {
+      serverSelectionTimeoutMS: 5000,
+    });
     console.log("MongoDB connected successfully");
     await ensureSeeded();
   } catch (error) {
