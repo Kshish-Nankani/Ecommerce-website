@@ -1,0 +1,135 @@
+/* ========================================
+   LEGAL PAGE
+======================================== */
+
+.legal-page {
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  padding: 38px 24px 72px;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(246, 220, 117, 0.24), transparent 40%),
+    radial-gradient(circle at 88% 20%, rgba(212, 167, 44, 0.16), transparent 43%),
+    #f6f5f2;
+}
+
+.legal-hero,
+.legal-card {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.legal-hero {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.legal-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #1f4b67;
+  background: #dff0fc;
+  border: 1px solid #b7d8ea;
+  border-radius: 999px;
+  padding: 6px 12px;
+  margin-bottom: 14px;
+}
+
+.legal-hero h1 {
+  font-size: clamp(30px, 4.6vw, 50px);
+  color: #0f2436;
+  margin-bottom: 10px;
+}
+
+.legal-lead {
+  max-width: 680px;
+  margin: 0 auto;
+  color: #3b5870;
+  font-size: clamp(15px, 2.2vw, 19px);
+}
+
+.legal-top-links {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.legal-chip {
+  text-decoration: none;
+  border-radius: 999px;
+  border: 1px solid #bfd8e8;
+  background: #ffffff;
+  color: #234e68;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 14px;
+  transition: all 0.2s ease;
+}
+
+.legal-chip:hover {
+  background: #edf6fd;
+  transform: translateY(-1px);
+}
+
+.legal-chip.is-active {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+.legal-card {
+  background: #ffffff;
+  border: 1px solid #d4e4ef;
+  border-radius: 16px;
+  padding: 24px 22px;
+  box-shadow: 0 9px 22px rgba(7, 38, 67, 0.08);
+}
+
+.legal-card + .legal-card {
+  margin-top: 18px;
+}
+
+.legal-card h2 {
+  font-size: 30px;
+  color: #0f2436;
+  margin-bottom: 10px;
+}
+
+.legal-card h3 {
+  margin-top: 16px;
+  margin-bottom: 7px;
+  font-size: 20px;
+  color: #1e3f58;
+}
+
+.legal-card p {
+  color: #3f5c72;
+}
+
+.legal-card ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #3f5c72;
+}
+
+.legal-card li + li {
+  margin-top: 7px;
+}
+
+@media (max-width: 600px) {
+  .legal-page {
+    padding: 24px 12px 54px;
+  }
+
+  .legal-card {
+    padding: 20px 16px;
+  }
+
+  .legal-card h2 {
+    font-size: 26px;
+  }
+}

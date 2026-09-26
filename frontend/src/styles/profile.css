@@ -1,0 +1,195 @@
+.profile-page {
+  flex: 1;
+  padding: 52px 0 80px;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(246, 220, 117, 0.24), transparent 40%),
+    radial-gradient(circle at 88% 20%, rgba(212, 167, 44, 0.16), transparent 43%),
+    #f6f5f2;
+}
+
+.profile-container {
+  max-width: 1050px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+.profile-eyebrow {
+  color: #777;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.profile-header h1 {
+  color: #111;
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.1;
+}
+
+.profile-header p:last-child {
+  color: #777;
+  margin-top: 10px;
+}
+
+.profile-store-link {
+  color: #111;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.profile-orders-section {
+  padding: 26px;
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+}
+
+.profile-section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.profile-section-heading h2 {
+  color: #111;
+  font-size: 24px;
+}
+
+.profile-section-heading span,
+.profile-order-header span,
+.profile-product p {
+  color: #777;
+  font-size: 14px;
+}
+
+.profile-order-list {
+  display: grid;
+  gap: 18px;
+}
+
+.profile-order {
+  border: 1px solid #e2e2e2;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.profile-order-header,
+.profile-order-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 18px;
+  background: #f7f7f7;
+}
+
+.profile-order-header p {
+  color: #222;
+  font-weight: 700;
+}
+
+.profile-order-header span {
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.profile-order-status {
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: #fff !important;
+  font-size: 12px !important;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.profile-status-pending { background: #a16207; }
+.profile-status-shipped { background: #2563eb; }
+.profile-status-delievered { background: #15803d; }
+
+.profile-product-list {
+  padding: 4px 18px;
+}
+
+.profile-product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 15px 0;
+  border-bottom: 1px solid #ededed;
+}
+
+.profile-product:last-child {
+  border-bottom: 0;
+}
+
+.profile-product h3 {
+  color: #222;
+  font-size: 16px;
+  margin-bottom: 3px;
+}
+
+.profile-product strong,
+.profile-order-total strong {
+  color: #111;
+  white-space: nowrap;
+}
+
+.profile-order-total {
+  background: #fff;
+  border-top: 1px solid #ededed;
+  color: #555;
+  font-size: 14px;
+}
+
+.profile-message {
+  padding: 30px 0;
+  color: #777;
+}
+
+.profile-error {
+  margin: 0;
+}
+
+.profile-empty-state {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.profile-empty-state h2 {
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.profile-empty-state p {
+  color: #777;
+  margin-bottom: 22px;
+}
+
+.profile-empty-state .btn {
+  display: inline-block;
+  text-decoration: none;
+}
+
+@media (max-width: 650px) {
+  .profile-page {
+    padding-top: 35px;
+  }
+
+  .profile-header {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .profile-orders-section {
+    padding: 18px;
+  }
+}

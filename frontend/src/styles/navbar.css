@@ -1,0 +1,218 @@
+/* ================================
+   AR SUNTECH NAVBAR & TOP BANNER (BEIGE & BLACK THEME)
+================================ */
+
+.top-banner {
+  background: #1c1917;
+  color: #fef3c7;
+  font-size: 13px;
+  padding: 8px 20px;
+  border-bottom: 1px solid rgba(254, 243, 199, 0.15);
+}
+
+.top-banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.top-banner-content a {
+  color: #fde047;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.top-banner-content a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.navbar {
+  width: 100%;
+  background: #f6f4ee;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #e7e5e4;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* BRAND */
+.navbar-brand .brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.navbar-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #d4a72c;
+  box-shadow: 0 2px 8px rgba(212, 167, 44, 0.25);
+}
+
+.brand-name {
+  color: #1c1917;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid #d6d3d1;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 20px;
+  color: #1c1917;
+  cursor: pointer;
+}
+
+/* NAVIGATION LINKS */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: #44403c;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.navbar-links li a:hover {
+  color: #1c1917;
+  background: #e7e5e4;
+}
+
+/* CART LINK */
+.cart-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent !important;
+  color: #1c1917 !important;
+  font-weight: 700 !important;
+  padding: 8px 14px !important;
+  border: 1px solid #d6d3d1;
+  border-radius: 8px;
+  box-shadow: none;
+  transition: all 0.2s ease;
+}
+
+.cart-nav-link:hover {
+  background: #1c1917 !important;
+  color: #ffffff !important;
+  border-color: #1c1917;
+}
+
+.cart-nav-link:hover .cart-badge {
+  background: #d4a72c;
+  color: #1c1917;
+}
+
+.cart-badge {
+  background: #1c1917;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+/* ADMIN & LOGOUT */
+.admin-nav-link {
+  border: 1px solid #d6d3d1;
+  color: #1c1917 !important;
+}
+
+.admin-nav-link:hover {
+  background: #1c1917 !important;
+  color: #ffffff !important;
+  border-color: #1c1917;
+}
+
+.btn-logout {
+  border: 1px solid #d6d3d1;
+  background: #ffffff;
+  color: #44403c;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #ffffff;
+}
+
+@media (max-width: 820px) {
+  .top-banner-content {
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: #f6f4ee;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    border-bottom: 1px solid #e7e5e4;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    gap: 12px;
+  }
+
+  .navbar-links.is-open {
+    display: flex;
+  }
+
+  .navbar-links li a,
+  .btn-logout {
+    text-align: center;
+    width: 100%;
+    display: block;
+  }
+}
