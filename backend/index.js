@@ -5,20 +5,11 @@ const connectDb = require("./config/db");
 
 dotenv.config();
 
+// Connect to MongoDB
+connectDb();
+
 const app = express();
 
-// Ensure Database connection for serverless / traditional server
-app.use(async (req, res, next) => {
-  try {
-    await connectDb();
-    next();
-  } catch (err) {
-    console.error("DB Middleware Error:", err);
-    next(err);
-  }
-});
-
-// Configure CORS for local development and Vercel production deployment
 const allowedOrigins = [
   "http://localhost:3000",
   "http://127.0.0.1:3000",
@@ -28,7 +19,6 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      // Allow requests with no origin (mobile apps, curl, etc.) or allowed origins or any vercel.app preview
       if (
         !origin ||
         allowedOrigins.includes(origin) ||
@@ -37,7 +27,7 @@ app.use(
       ) {
         callback(null, true);
       } else {
-        callback(null, true); // Permissive for production serverless flex
+        callback(null, true);
       }
     },
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -49,8 +39,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("AR SUNTECH Backend API is working properly");
+  res.status(200).send("AR SUNTECH Backend API is working properly");
 });
+
+app.get("/favicon.ico", (req, res) => res.status(204).end());
 
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/products", require("./routes/productRoutes"));
