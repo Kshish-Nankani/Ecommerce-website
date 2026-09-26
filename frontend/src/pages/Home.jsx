@@ -48,7 +48,7 @@ const Home = () => {
       <section
         className="shop-intro"
         style={{
-          backgroundImage: `linear-gradient(to right, rgba(28, 25, 23, 0.72) 0%, rgba(28, 25, 23, 0.38) 50%, rgba(28, 25, 23, 0.08) 100%), radial-gradient(circle at 85% 20%, rgba(212, 167, 44, 0.20), transparent 50%), url('/images/hero.jpeg')`,
+          backgroundImage: `linear-gradient(135deg, rgba(28, 25, 23, 0.78) 0%, rgba(28, 25, 23, 0.42) 60%, rgba(28, 25, 23, 0.10) 100%), radial-gradient(circle at 85% 20%, rgba(212, 167, 44, 0.20), transparent 50%), url('/images/hero.jpeg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat'

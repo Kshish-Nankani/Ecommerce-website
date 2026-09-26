@@ -201,8 +201,9 @@
 
 @media (max-width: 820px) {
   .shop-intro {
-    min-height: 420px;
+    min-height: 380px;
     padding: 60px 20px 50px;
+    background-position: 70% center !important;
   }
 
   .shop-toolbar {
@@ -216,5 +217,24 @@
 
   .features-container {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .shop-intro {
+    min-height: 320px;
+    padding: 44px 16px 36px;
+    background-position: 75% center !important;
+  }
+
+  .hero-actions-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 }
