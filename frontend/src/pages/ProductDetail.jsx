@@ -7,7 +7,7 @@ import Alert from '../components/Alert';
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [selectedImage, setSelectedImage] = useState('');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [cartMessage, setCartMessage] = useState('');
   const dispatch = useDispatch();
@@ -21,12 +21,8 @@ const ProductDetail = () => {
         }
 
         const data = await res.json();
-        const imageList = Array.isArray(data.imageUrl)
-          ? data.imageUrl.filter(Boolean)
-          : [data.imageUrl].filter(Boolean);
-
         setProduct(data);
-        setSelectedImage(imageList[0] || '');
+        setCurrentImageIndex(0);
       } catch (error) {
         console.error(error);
         setProduct(null);
@@ -46,6 +42,16 @@ const ProductDetail = () => {
 
   const priceValue = Number(product?.price ?? 0);
 
+  const handleNextImage = () => {
+    if (imageList.length === 0) return;
+    setCurrentImageIndex((prev) => (prev + 1) % imageList.length);
+  };
+
+  const handlePrevImage = () => {
+    if (imageList.length === 0) return;
+    setCurrentImageIndex((prev) => (prev - 1 + imageList.length) % imageList.length);
+  };
+
   const handleAddToCart = () => {
     if (!product) return;
 
@@ -55,7 +61,7 @@ const ProductDetail = () => {
         productId: product._id,
         name: product.name,
         price: Number(product.price),
-        imageUrl: imageList[0] || '',
+        imageUrl: imageList[currentImageIndex] || imageList[0] || '',
         qty: 1,
       })
     );
@@ -75,6 +81,8 @@ const ProductDetail = () => {
     );
   }
 
+  const activeImage = imageList[currentImageIndex] || imageList[0] || '/images/placeholder.jpg';
+
   return (
     <main className="product-detail-page">
       <div className="container product-detail-container">
@@ -90,12 +98,37 @@ const ProductDetail = () => {
 
         <section className="product-detail-card">
           <div className="product-detail-gallery">
-            <div className="product-detail-main-image-wrap">
+            <div className="product-detail-slider-wrap">
               <img
-                src={selectedImage || imageList[0] || '/images/placeholder.jpg'}
+                src={activeImage}
                 alt={product.name}
                 className="product-detail-main-image"
+                key={activeImage}
               />
+
+              {imageList.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    className="slider-arrow slider-arrow-left"
+                    onClick={handlePrevImage}
+                    aria-label="Previous product image"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    type="button"
+                    className="slider-arrow slider-arrow-right"
+                    onClick={handleNextImage}
+                    aria-label="Next product image"
+                  >
+                    ›
+                  </button>
+                  <span className="slider-counter">
+                    {currentImageIndex + 1} / {imageList.length}
+                  </span>
+                </>
+              )}
             </div>
 
             {imageList.length > 1 && (
@@ -104,8 +137,8 @@ const ProductDetail = () => {
                   <button
                     key={`${image}-${index}`}
                     type="button"
-                    className={`product-detail-thumbnail ${selectedImage === image ? 'is-active' : ''}`}
-                    onClick={() => setSelectedImage(image)}
+                    className={`product-detail-thumbnail ${currentImageIndex === index ? 'is-active' : ''}`}
+                    onClick={() => setCurrentImageIndex(index)}
                     aria-label={`View product image ${index + 1}`}
                   >
                     <img src={image} alt={`${product.name} ${index + 1}`} />
@@ -145,11 +178,29 @@ const ProductDetail = () => {
               </Link>
             </div>
 
-            <ul className="product-detail-highlights">
-              <li>Secure checkout</li>
-              <li>Free shipping on orders over $50</li>
-              <li>30-day returns</li>
-            </ul>
+            <div className="product-detail-trust-grid">
+              <div className="trust-badge-item">
+                <span className="trust-icon">🔒</span>
+                <div>
+                  <strong>100% Secure Checkout</strong>
+                  <p>No account required</p>
+                </div>
+              </div>
+              <div className="trust-badge-item">
+                <span className="trust-icon">💳</span>
+                <div>
+                  <strong>Easy Payment Transfer</strong>
+                  <p>JazzCash & HBL Bank</p>
+                </div>
+              </div>
+              <div className="trust-badge-item">
+                <span className="trust-icon">💬</span>
+                <div>
+                  <strong>WhatsApp Support</strong>
+                  <p>Instant order assistance</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>

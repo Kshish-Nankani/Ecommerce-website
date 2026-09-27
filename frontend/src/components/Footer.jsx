@@ -208,19 +208,80 @@ const Footer = () => {
         @media (max-width: 900px) {
           .footer-main {
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 28px;
           }
         }
 
         @media (max-width: 600px) {
+          .footer-container {
+            padding: 36px 18px 20px;
+          }
+
           .footer-main {
-            grid-template-columns: 1fr;
-            gap: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px 16px;
+            padding-bottom: 30px;
+          }
+
+          .footer-brand {
+            grid-column: 1 / -1;
+          }
+
+          .footer-column-contacts {
+            grid-column: 1 / -1;
+          }
+
+          .footer-brand h2 {
+            font-size: 22px;
+          }
+
+          .footer-logo {
+            width: 40px;
+            height: 40px;
+          }
+
+          .footer-brand p {
+            font-size: 13px;
+          }
+
+          .footer-column h3 {
+            font-size: 14px;
+            margin-bottom: 12px;
+          }
+
+          .footer-column ul li {
+            margin-bottom: 8px;
+          }
+
+          .footer-column ul li a {
+            font-size: 13px;
+          }
+
+          .footer-accounts-card {
+            padding: 12px;
+          }
+
+          .footer-account-val {
+            font-size: 13px;
+          }
+
+          .footer-wa-btn {
+            padding: 9px 12px;
+            font-size: 12px;
           }
 
           .footer-bottom {
             flex-direction: column;
             text-align: center;
+            gap: 12px;
+            padding-top: 18px;
+          }
+
+          .footer-bottom-links {
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
           }
         }
       `}</style>
@@ -256,6 +317,17 @@ const Footer = () => {
               </div>
             </div>
 
+            {/* Information */}
+            <div className="footer-column">
+              <h3>Information</h3>
+              <ul>
+                <li><Link to="/about">About AR SUNTECH</Link></li>
+                <li><Link to="/contact">Contact Us</Link></li>
+                <li><Link to="/privacy">Privacy Policy</Link></li>
+                <li><Link to="/terms">Terms & Conditions</Link></li>
+              </ul>
+            </div>
+
             {/* Quick Links */}
             <div className="footer-column">
               <h3>Quick Links</h3>
@@ -267,19 +339,8 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Support */}
-            <div className="footer-column">
-              <h3>Information</h3>
-              <ul>
-                <li><Link to="/about">About AR SUNTECH</Link></li>
-                <li><Link to="/contact">Contact Us</Link></li>
-                <li><Link to="/privacy">Privacy Policy</Link></li>
-                <li><Link to="/terms">Terms & Conditions</Link></li>
-              </ul>
-            </div>
-
             {/* Direct Contacts */}
-            <div className="footer-column">
+            <div className="footer-column footer-column-contacts">
               <h3>Direct Contacts</h3>
               <p style={{ fontSize: '13px', color: '#a8a29e', marginBottom: '10px' }}>
                 Contact us directly on WhatsApp or call for immediate assistance:

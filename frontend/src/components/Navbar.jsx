@@ -52,7 +52,8 @@ const Navbar = () => {
             <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
             <li>
               <Link to="/cart" className="cart-nav-link" onClick={closeMenu}>
-                Cart
+                <span className="cart-icon">🛒</span>
+                <span>Cart</span>
                 <span className="cart-badge">{cartItems.reduce((acc, item) => acc + (Number(item.qty) || 1), 0)}</span>
               </Link>
             </li>

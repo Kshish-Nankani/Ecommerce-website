@@ -303,6 +303,15 @@
     grid-template-columns: 1fr;
   }
 
+  .checkout-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-form,
+  .checkout-summary {
+    padding: 20px 16px;
+  }
+
   .payment-details-grid {
     grid-template-columns: 1fr;
   }

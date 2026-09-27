@@ -45,7 +45,7 @@
 .admin-table-wrap .admin-danger:hover { background: #dc2626; color: #ffffff; border-color: #dc2626; }
 
 @media (max-width: 800px) {
-  .admin-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .admin-stats-grid { grid-template-columns: repeat(3, 1fr); }
   .admin-product-form { grid-template-columns: repeat(2, 1fr); }
   .admin-product-form label:nth-of-type(2) { grid-column: auto; }
 }
@@ -53,7 +53,8 @@
 @media (max-width: 520px) {
   .admin-header { align-items: flex-start; flex-direction: column; }
   .admin-stats-grid { grid-template-columns: 1fr; }
-  .admin-product-form { grid-template-columns: 1fr; }
+  .admin-product-form { grid-template-columns: 1fr; padding: 14px; }
+  .admin-section { padding: 16px; }
 }
 
 .admin-image-previews { grid-column: 1 / -1; margin-top: 10px; }

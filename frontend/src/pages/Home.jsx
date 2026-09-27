@@ -99,42 +99,34 @@ const Home = () => {
 
       {/* Product Catalog & Filtering */}
       <div id="products-catalog" className="container shop-container">
-        <div className="shop-toolbar">
-          <label className="shop-search-label">
-            <span>Search Products</span>
+        <div className="shop-toolbar-compact">
+          <div className="search-input-wrap">
+            <span className="search-icon">🔍</span>
             <input
               type="search"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search by product name, category..."
+              placeholder="Search products..."
             />
-          </label>
-          <label className="shop-category-label">
-            <span>Filter Category</span>
-            <select value={category} onChange={(event) => setCategory(event.target.value)}>
-              {categories.map((item) => (
-                <option key={item} value={item}>{item}</option>
-              ))}
-            </select>
-          </label>
-          <p className="shop-result-count">{visibleProducts.length} Products Available</p>
-        </div>
-
-        {/* Quick Category Chips */}
-        {categories.length > 1 && (
-          <div className="category-chips">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                className={`category-chip ${category === cat ? 'is-active' : ''}`}
-                onClick={() => setCategory(cat)}
-              >
-                {cat}
-              </button>
-            ))}
           </div>
-        )}
+
+          {categories.length > 1 && (
+            <div className="category-chips-inline">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  className={`category-chip ${category === cat ? 'is-active' : ''}`}
+                  onClick={() => setCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          )}
+
+          <span className="compact-result-count">{visibleProducts.length} Items</span>
+        </div>
 
         {loading && <p className="shop-message">Loading catalog products...</p>}
         {error && <div className="shop-message shop-error"><Alert>{error}</Alert></div>}
