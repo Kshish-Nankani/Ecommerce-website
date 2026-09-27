@@ -1,28 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 const connectDb = require("./config/db");
 
 dotenv.config();
 
 const app = express();
-
-// Ensure DB connection for every request; fail fast if DB is disconnected
-app.use(async (req, res, next) => {
-  // Skip DB check for root healthcheck and favicon
-  if (req.path === "/" || req.path === "/favicon.ico") {
-    return next();
-  }
-  try {
-    await connectDb();
-    next();
-  } catch (err) {
-    console.error("DB Middleware Error:", err.message);
-    return res.status(500).json({
-      message: `Database Connection Error: ${err.message}. Please check MONGO_URI in Vercel settings.`
-    });
-  }
-});
 
 // Configure permissive CORS for Vercel deployment
 app.use(
@@ -41,6 +25,36 @@ app.get("/", (req, res) => {
 });
 
 app.get("/favicon.ico", (req, res) => res.status(204).end());
+
+// Healthcheck route to diagnose environment variables & DB connection live on Vercel
+app.get("/api/health", async (req, res) => {
+  try {
+    await connectDb();
+  } catch (err) {
+    // catch DB connect error for health output
+  }
+  const states = ["disconnected", "connected", "connecting", "disconnecting"];
+  const dbState = mongoose.connection.readyState;
+  res.json({
+    status: "ok",
+    hasMongoUri: Boolean(process.env.MONGO_URI),
+    databaseState: states[dbState] || dbState,
+    nodeEnv: process.env.NODE_ENV || "not_set"
+  });
+});
+
+// DB Connection Middleware for API routes
+app.use(async (req, res, next) => {
+  try {
+    await connectDb();
+    next();
+  } catch (err) {
+    console.error("DB Middleware Error:", err.message);
+    return res.status(500).json({
+      message: `Database Connection Error: ${err.message}. Please check MONGO_URI in Vercel settings.`
+    });
+  }
+});
 
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/products", require("./routes/productRoutes"));
