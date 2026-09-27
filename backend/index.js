@@ -7,17 +7,24 @@ dotenv.config();
 
 const app = express();
 
-// Ensure DB connection for every serverless function request
+// Ensure DB connection for every request; fail fast if DB is disconnected
 app.use(async (req, res, next) => {
+  // Skip DB check for root healthcheck and favicon
+  if (req.path === "/" || req.path === "/favicon.ico") {
+    return next();
+  }
   try {
     await connectDb();
+    next();
   } catch (err) {
-    console.error("DB connection error:", err);
+    console.error("DB Middleware Error:", err.message);
+    return res.status(500).json({
+      message: `Database Connection Error: ${err.message}. Please check MONGO_URI in Vercel settings.`
+    });
   }
-  next();
 });
 
-// Configure permissive CORS for Vercel production deployment
+// Configure permissive CORS for Vercel deployment
 app.use(
   cors({
     origin: true,
