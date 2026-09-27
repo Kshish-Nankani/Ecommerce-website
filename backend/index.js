@@ -28,17 +28,19 @@ app.get("/favicon.ico", (req, res) => res.status(204).end());
 
 // Healthcheck route to diagnose environment variables & DB connection live on Vercel
 app.get("/api/health", async (req, res) => {
+  let dbError = null;
   try {
     await connectDb();
   } catch (err) {
-    // catch DB connect error for health output
+    dbError = err.message;
   }
   const states = ["disconnected", "connected", "connecting", "disconnecting"];
   const dbState = mongoose.connection.readyState;
   res.json({
-    status: "ok",
+    status: dbState === 1 ? "ok" : "error",
     hasMongoUri: Boolean(process.env.MONGO_URI),
     databaseState: states[dbState] || dbState,
+    dbError: dbError,
     nodeEnv: process.env.NODE_ENV || "not_set"
   });
 });
